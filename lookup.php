@@ -107,13 +107,13 @@ function get_bitcoin($address) {
 
 function get_litecoin($address) {
 	$return = array();
-	$data = get_request('http://explorer.litecoin.net/address/'.$address);
+	$data = get_request('http://block-explorer.com/address/'.$address);
 	if (!empty($data)
-	  && strstr($data, 'Transactions in: ')
-	  && strstr($data, 'Received: ')) {
+	  && preg_match("/Transactions in:<\/td><td>(.*)<\/td>/", $data, $count)
+	  && preg_match("/Received:<\/td><td>(.*)<\/td>/", $data, $amount)) {
 	  	$return += array(
-			'count' => (int) parse($data,'Transactions in: ','<br />'),
-			'amount' => (float) parse($data,'Received: ','<br />')
+			'count' => (int) $count[1],
+			'amount' => (float) $amount[1]
 		);
 	  	return $return;
 	}
