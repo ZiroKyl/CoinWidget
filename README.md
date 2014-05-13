@@ -2,9 +2,9 @@ Installation
 ==============
 A. Grab the latest version from GitHub: https://github.com/alvinhkh/coinwidget
 
-B. Open **widget/coin.js** and find:
+B. Open **coin.js** and find:
 
-	source: 'http://coinwidget.com/widget/'
+	source: 'http://www.alvinhkh.com/coinwidget/'
 
 C. Change the URL portion of this line to your own server/path.
 
