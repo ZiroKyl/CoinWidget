@@ -1,8 +1,9 @@
 /**
 
 Donations welcome:
-	BTC: 122MeuyZpYz4GSHNrF98e6dnQCXZfHJeGS
-	LTC: LY1L6M6yG26b4sRkLv4BbkmHhPn8GR5fFm
+        BTC: 122MeuyZpYz4GSHNrF98e6dnQCXZfHJeGS
+        LTC: LY1L6M6yG26b4sRkLv4BbkmHhPn8GR5fFm
+        DOGE: DTnt7VZqR5ofHhAxZuDy4m3PhSjKFXpw3e (donation goes to http://dogechain.info/)
 		~ Thank you!
 
 ------------
@@ -53,7 +54,7 @@ var CoinWidgetCom = {
 	}
 	, validate: function(config) {
 		var $accepted = [];
-		$accepted['currencies'] = ['bitcoin','litecoin'];
+		$accepted['currencies'] = ['bitcoin','litecoin', 'dogecoin'];
 		$accepted['counters'] = ['count','amount','hide'];
 		$accepted['amount'] = ['show','hide'];
 		$accepted['alignment'] = ['al','ac','ar','bl','bc','br'];
