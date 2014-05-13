@@ -177,7 +177,7 @@ var CoinWidgetCom = {
 						CoinWidgetCom.counter = COINWIDGETCOM_DATA;
 						$.each(CoinWidgetCom.counter,function(i,v){
 							$config = CoinWidgetCom.config[i];
-							if (!v.count || v == null) v = {count:0,amount:0};
+							if (v == null || !v.count) v = {count:0,amount:0};
 							$("span[data-coinwidget-instance='"+i+"']").find('> span').html($config.counter=='count'?v.count:((v.amount*($config.milli ? 1000 : 1)).toFixed($config.decimals)+' '+($config.milli ? 'm':'')+$config.lbl_amount));
 							if ($config.auto_show) {
 								$("span[data-coinwidget-instance='"+i+"']").find('> a').click();
