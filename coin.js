@@ -30,7 +30,7 @@ var CoinWidgetComCounter = 0;
 
 if (typeof CoinWidgetCom != 'object')
 var CoinWidgetCom = {
-	source: 'http://coinwidget.com/widget/'
+	source: 'http://www.alvinhkh.com/coinwidget/'
 	, config: []
 	, go :function(config) {
 		config = CoinWidgetCom.validate(config);
@@ -39,7 +39,7 @@ var CoinWidgetCom = {
 		var $span = document.createElement('span');
 		$span.setAttribute('data-coinwidget-instance', CoinWidgetComCounter);
 		$span.setAttribute('class', 'COINWIDGETCOM_CONTAINER');
-		document.getElementsByTagName('body')[0].appendChild($span);
+		document.getElementById(config.element_id).appendChild($span);
 		CoinWidgetComCounter++;
 	}
 	, validate: function(config) {
@@ -76,6 +76,9 @@ var CoinWidgetCom = {
 			config.lbl_amount = 'BTC';
 		if (typeof config.decimals != 'number' || config.decimals < 0 || config.decimals > 10)
 			config.decimals = 4;
+			
+		if (!config.element_id)
+			config.element_id = 'coinwidget';
 
 		return config;
 	}
