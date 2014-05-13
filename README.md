@@ -1,3 +1,10 @@
+CoinWidget
+==============
+*The Bitcoin, Litecoin and Dogecoin Donation Button*
+
+Released under the Open Source **MIT License** (see **LICENSE** file for details).
+
+
 Installation
 ==============
 A. Grab the latest version from GitHub: https://github.com/alvinhkh/coinwidget
