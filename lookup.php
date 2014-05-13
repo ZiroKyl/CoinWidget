@@ -33,12 +33,10 @@ header("Content-type: text/javascript");
 $data = isset($_GET['data'])?$_GET['data']:'';
 if (!empty($data)) {
 	$data = explode("|", $data);
-
 	$responses = array();
 	if (!empty($data)) {
 		foreach ($data as $key) {
 			list($instance,$currency,$address) = explode('_',$key);
-
 			switch ($currency) {
 				case 'bitcoin':
 					$response = get_bitcoin($address);
@@ -87,13 +85,12 @@ if (!empty($data)) {
 				case 'fedoracoin':
 					$response = get_fedoracoin($address);
 					break;
-
+				}
+				$responses[$instance] = $response;
 			}
-			$responses[$instance] = $response;
 		}
+		echo 'var COINWIDGETCOM_DATA = '.json_encode($responses).';';
 	}
-	echo 'var COINWIDGETCOM_DATA = '.json_encode($responses).';';
-}
 
 function get_bitcoin($address) {
 	$return = array();
@@ -124,13 +121,13 @@ function get_litecoin($address) {
 
 function get_dogecoin($address) {
 	$return = array();
-	$data = get_request('http://dogechain.info/address/'.$address.);
-	if (!empty($data) 
-	  && strstr($data, 'Transactions in: ') 
-	  && strstr($data, 'Received: ')) {
+	$data = get_request('http://dogechain.info/address/'.$address);
+	if (!empty($data)
+	  && preg_match("/Transactions in<\/td>\s+<td>(.*)<\/td>/", $data, $count)
+	  && preg_match("/Received<\/td>\s+<td>(.*)<\/td>/", $data, $amount)) {
 	  	$return += array(
-			'count' => (int) parse($data,'Transactions in: ','<br />'),
-			'amount' => (float) parse($data,'Received: ','<br />')
+			'count' => (int) $count[1],
+			'amount' => (float) $amount[1]
 		);
 	  	return $return;
 	}
@@ -147,7 +144,6 @@ function get_auroracoin($address) {
 			'amount' => 0.0
 		);
 	} else {
-
 		if (!empty($data)
 		  && strstr($data, 'Transactions in: ')
 		  && strstr($data, 'Received: ')) {
