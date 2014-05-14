@@ -33,14 +33,33 @@ if (typeof CoinWidgetCom != 'object')
 var CoinWidgetCom = {
 	source: 'http://www.alvinhkh.com/coinwidget/'
 	, config: []
-	, go :function(config) {
+	, go :function(config, element) {
 		config = CoinWidgetCom.validate(config);
 		CoinWidgetCom.config[CoinWidgetComCounter] = config;
 		CoinWidgetCom.loader.jquery();
-		var $span = document.createElement('span');
-		$span.setAttribute('data-coinwidget-instance', CoinWidgetComCounter);
-		$span.setAttribute('class', 'COINWIDGETCOM_CONTAINER');
-		document.getElementById(config.element_id).appendChild($span);
+		var newSpan = document.createElement('span');
+		newSpan.setAttribute("data-coinwidget-instance", CoinWidgetComCounter);
+		newSpan.setAttribute("class", "COINWIDGETCOM_CONTAINER");
+		if( (typeof element === 'object' && (element instanceof HTMLElement || $(element).length > 0)) ||
+			typeof element === 'string' && (element.charAt(0) === '#' || element.charAt(0) === '.' || element === '#' + element) && element.length > 0
+		){
+			if (typeof element === 'object'){
+				if(element instanceof NodeList)
+					element = element[0];
+				else if (typeof jQuery === 'function')
+					jQuery(element).replaceWith('<span data-coinwidget-instance="'+CoinWidgetComCounter+'" class="COINWIDGETCOM_CONTAINER"></span>');
+			} else if (typeof element === 'string'){
+				if (element.charAt(0) === '#' && document.getElementById(element.substr(1)) !== null)
+					element = document.getElementById(element.substr(1));
+				else if (element.charAt(0) === '.' && document.getElementsByClassName(element.substr(1))[0] !== null)
+					element = document.getElementsByClassName(element.substr(1))[0];
+				else
+					element = document.getElementById('element');
+				element.parentNode.replaceChild( newSpan, element );
+			}	
+		} else {
+			document.getElementsByTagName('body')[0].appendChild(newSpan);
+		}
 		CoinWidgetComCounter++;
 	}
 	, validate: function(config) {
@@ -59,9 +78,8 @@ var CoinWidgetCom = {
 			config.alignment = 'bl';
 		if (typeof config.qrcode != 'boolean')
 			config.qrcode = true;
-		if (typeof config.milli != 'boolean') {
+		if (typeof config.milli != 'boolean')
 			config.milli = false;
-		}
 
 		if (typeof config.auto_show != 'boolean')
 			config.auto_show = false;
@@ -77,9 +95,6 @@ var CoinWidgetCom = {
 			config.lbl_amount = 'BTC';
 		if (typeof config.decimals != 'number' || config.decimals < 0 || config.decimals > 10)
 			config.decimals = 4;
-			
-		if (!config.element_id)
-			config.element_id = 'coinwidget';
 
 		return config;
 	}
