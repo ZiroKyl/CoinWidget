@@ -70,10 +70,10 @@ function get_bitcoin($address) {
 
 function get_litecoin($address) {
 	$return = array();
-	$data = get_request('http://block-explorer.com/address/'.$address);
+	$data = get_request('http://explorer.litecoin.net/address/'.$address);
 	if (!empty($data)
-	  && preg_match("/Transactions in:<\/td><td>(.*)<\/td>/", $data, $count)
-	  && preg_match("/Received:<\/td><td>(.*)<\/td>/", $data, $amount)) {
+	  && preg_match("/Transactions in: (.*)/", $data, $count)
+	  && preg_match("/Received: (.*) LTC/", $data, $amount)) {
 	  	$return += array(
 			'count' => (int) $count[1],
 			'amount' => (float) $amount[1]
@@ -86,8 +86,8 @@ function get_dogecoin($address) {
 	$return = array();
 	$data = get_request('http://dogechain.info/address/'.$address);
 	if (!empty($data)
-	  && preg_match("/Transactions in<\/td>\s+<td>(.*)<\/td>/", $data, $count)
-	  && preg_match("/Received<\/td>\s+<td>(.*)<\/td>/", $data, $amount)) {
+	  && preg_match("/Transactions received<\/td>\s+<td><span class=\"number\">(.*)<\/span>/", $data, $count)
+	  && preg_match("/Received<\/td>\s+<td><span class=\"currency\">(.*)<\/span>/", $data, $amount)) {
 	  	$return += array(
 			'count' => (int) $count[1],
 			'amount' => (float) $amount[1]
