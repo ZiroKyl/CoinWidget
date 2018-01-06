@@ -1,6 +1,6 @@
 Crypto(currency) Donate
 ==============
-CrDon is a modern and backend-free version of (CoinWidget)[https://github.com/alvinhkh/CoinWidget]
+CrDon is a modern, backend-free, jQuery-free, NoJS-friendly, IE8+ and WAI-ARIA compatible version of [CoinWidget](https://github.com/alvinhkh/CoinWidget).
 
 :construction: CrDon has been moved in to https://github.com/ASOIU/9bit/tree/master/theme/crypto-currency
 
