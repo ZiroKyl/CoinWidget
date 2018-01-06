@@ -1,24 +1,11 @@
-CoinWidget
+Crypto(currency) Donate
 ==============
-*The Bitcoin, Litecoin and Dogecoin Donation Button*
+CrDon is a modern and backend-free version of (CoinWidget)[https://github.com/alvinhkh/CoinWidget]
 
-Released under the Open Source **MIT License** (see **LICENSE** file for details).
+:construction: CrDon has been moved in to https://github.com/ASOIU/9bit/tree/master/theme/crypto-currency
 
-
-Installation
+Usage and Example Code
 ==============
-A. Grab the latest version from GitHub: https://github.com/alvinhkh/coinwidget
+![pre-release screen-shoot of the Crypto(currency) Donate popover](https://raw.githubusercontent.com/ASOIU/9bit/master/theme/crypto-currency/screen-shoot.png)
 
-B. Open **coin.js** and find:
-
-	source: 'http://www.alvinhkh.com/coinwidget/'
-
-C. Change the URL portion of this line to your own server/path.
-
-D. (optional) Open **lookup.php** and consider implementing a caching method based on your own style and preference.
-
-
-Example Code
-==============
-
-See the file: **code-sample.html**
+See [live demo](https://9b.asoiu.com/theme/crypto-currency/example.html) and [comments in `example.html`](https://github.com/ASOIU/9bit/blob/master/theme/crypto-currency/example.html).
